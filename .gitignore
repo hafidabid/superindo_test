@@ -1,0 +1,5 @@
+.env
+.env.docker
+config.json
+main
+.idea

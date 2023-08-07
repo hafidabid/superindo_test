@@ -1,0 +1,86 @@
+basePath: /api/v1
+host: localhost:8080
+info:
+  contact:
+    name: Hafid Abi
+  description: This is a API for test.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Test Lion SuperIndo
+  version: "1.0"
+paths:
+  /products/:
+    post:
+      consumes:
+      - application/json
+      description: Check and update product
+      parameters:
+      - description: Auth key here
+        in: header
+        name: Authorization
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Check and update product
+  /products/destination:
+    get:
+      consumes:
+      - application/json
+      description: Get destination product
+      parameters:
+      - description: Auth key here
+        in: header
+        name: Authorization
+        type: string
+      - description: page
+        in: query
+        name: page
+        type: integer
+      - description: limit
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Get destination product
+  /products/source:
+    get:
+      consumes:
+      - application/json
+      description: Get source product
+      parameters:
+      - description: Auth key here
+        in: header
+        name: Authorization
+        type: string
+      - description: page
+        in: query
+        name: page
+        type: integer
+      - description: limit
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Get source product
+schemes:
+- http
+swagger: "2.0"

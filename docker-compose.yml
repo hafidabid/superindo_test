@@ -1,0 +1,57 @@
+version: '3'
+services:
+  postgres1:
+    image: postgres:13.0-alpine
+    container_name: pg_superlion
+    restart: always
+    env_file:
+      - .env.docker
+    environment:
+      - POSTGRES_USER=${PG_USERNAME}
+      - POSTGRES_PASSWORD=${PG_PASS}
+      - POSTGRES_DB=${PG_DB}1
+    ports:
+      - 5500:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    networks:
+      - superlion_net
+
+  postgres2:
+    image: postgres:13.0-alpine
+    container_name: pg_superlion
+    restart: always
+    env_file:
+      - .env.docker
+    environment:
+      - POSTGRES_USER=${PG_USERNAME}
+      - POSTGRES_PASSWORD=${PG_PASS}
+      - POSTGRES_DB=${PG_DB}2
+    ports:
+      - 5500:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    networks:
+      - superlion_net
+
+  go-app:
+    build:
+      context: .
+    restart: on-failure
+    env_file:
+      - .env.docker
+    ports:
+      - ${PORT}:${PORT}
+    depends_on:
+      - redis
+      - postgres
+    networks:
+      - superlion_net
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  superlion_net:
+    driver: bridge

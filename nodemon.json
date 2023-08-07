@@ -1,0 +1,6 @@
+{
+  "watch" : ["."],
+  "ext" : "go",
+  "ignore": ["docs/*"],
+  "exec" : "swag init && go run main.go"
+}
